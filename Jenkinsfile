@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Compiling hello.cpp...'
+                echo 'Compiling hello.cpp...part 2(mohith)'
                 sh 'g++ -Wall hello.cpp -o output || exit 1'
                 sh 'echo "build PES2UG22CS671-1"'
             }
