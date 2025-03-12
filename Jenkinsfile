@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Compiling hello.cpp...'
-                sh 'g++ hello.cpp -o output'
+                sh 'g++ -Wall hello.cpp -o output || exit 1'
                 sh 'echo "build PES2UG22CS671-1"'
             }
         }
@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running the compiled program...'
-                sh './output'
+                sh '[ -f output ] && ./output || exit 1'
             }
         }
         
@@ -26,7 +26,7 @@ pipeline {
     
     post {
         failure {
-            error 'pipeline failed'
+            echo 'Pipeline failed'
         }
     }
 }
